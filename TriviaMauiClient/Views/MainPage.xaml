@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TriviaMauiClient.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:TriviaMauiClient.ViewModels"
+    x:DataType="viewmodels:MainPageViewModel"
+    BackgroundColor="{StaticResource PrimaryColor}"
+    FlowDirection="RightToLeft">
+
+    <ScrollView>
+
+        <Grid>
+
+            <StackLayout Margin="20">
+
+
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="200"
+                    HorizontalOptions="Center"
+                    Source="logo.png"
+                    WidthRequest="200" />
+
+                <StackLayout Margin="0,80">
+                    <Label
+                        FontSize="32"
+                        Style="{StaticResource welcome}"
+                        Text="ברוכ.ה הבא.ה למשחק הטריוויה המשוגע" />
+                    <Label
+                        FontFamily="OpenSansRegular"
+                        FontSize="16"
+                        Text="התחבר.י כדי להמשיך"
+                        TextColor="{StaticResource SecondaryColor}" />
+                    <Label
+                        IsVisible="{Binding ShowLoginError}"
+                        Style="{StaticResource error}"
+                        Text="{Binding LoginErrorMessage}" />
+                </StackLayout>
+
+                <StackLayout>
+                    <Label
+                        FontFamily="OpenSansRegular"
+                        FontSize="16"
+                        Text="שם משתמש"
+                        TextColor="{StaticResource SecondaryColor}" />
+                    <Grid Margin="0,5" RowDefinitions="auto,auto">
+                        <Border Style="{StaticResource loginBorder}" />
+                        <Entry
+                            Placeholder="הכנס.י שם משתמש"
+                            Style="{StaticResource loginEntry}"
+                            Text="{Binding UserName}" />
+                        <Label
+                            Grid.Row="1"
+                            IsVisible="{Binding ShowUserNameError}"
+                            Style="{StaticResource error}"
+                            Text="{Binding UserErrorMessage}" />
+                    </Grid>
+
+                    <Label
+                        FontFamily="OpenSansRegular"
+                        FontSize="16"
+                        Text="סיסמה"
+                        TextColor="{StaticResource SecondaryColor}" />
+                    <Grid Margin="0,5" RowDefinitions="auto,auto">
+                        <Border Style="{StaticResource loginBorder}" />
+                        <Entry
+                            Margin="5,0"
+                            BackgroundColor="Transparent"
+                            IsPassword="True"
+                            Placeholder="הכנס.י סיסמה"
+                            PlaceholderColor="Gray"
+                            Text="{Binding Password}"
+                            TextColor="White" />
+                        <Label
+                            Grid.Row="1"
+                            IsVisible="{Binding ShowPasswordError}"
+                            Style="{StaticResource error}"
+                            Text="{Binding PasswordErrorMessage}" />
+
+                    </Grid>
+                </StackLayout>
+
+                <Button
+                    Margin="0,15"
+                    BackgroundColor="{StaticResource SecondaryColor}"
+                    Command="{Binding LogInCommand}"
+                    FontFamily="OpenSansBold"
+                    IsEnabled="{Binding IsButtonEnabled}"
+                    Text="כניסה"
+                    TextColor="{StaticResource PrimaryColor}" />
+                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+
+                    <Label
+                        FontFamily="OpenSansRegular"
+                        FontSize="16"
+                        HorizontalOptions="StartAndExpand"
+                        Text="שכחתי סיסמה?"
+                        TextColor="{StaticResource SecondaryColor}"
+                        VerticalOptions="EndAndExpand" />
+                    <Label
+                        FontFamily="OpenSansRegular"
+                        FontSize="16"
+                        HorizontalOptions="EndAndExpand"
+                        Text="הרשמה"
+                        TextColor="{StaticResource SecondaryColor}"
+                        VerticalOptions="EndAndExpand" />
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

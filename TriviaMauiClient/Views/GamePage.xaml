@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TriviaMauiClient.Views.GamePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:TriviaMauiClient.ViewModels"
+    Title="המשחק"
+    x:DataType="viewmodels:GamePageViewModel"
+    FlowDirection="RightToLeft">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <VerticalStackLayout>
+        <Label
+            HorizontalOptions="Center"
+            Text="{Binding Message}"
+            VerticalOptions="Center" />
+        <Label Text="מצא Email"/>
+        <Entry x:Name="nickName" Placeholder="הכנס כינוי משתמש"/>
+        <Button Text="חפש" Command="{Binding SearchCommand}" CommandParameter="{Binding Source={x:Reference nickName},Path=Text}"/>
+        <Label Text="{Binding FoundEmail}"/>
+
+
+    </VerticalStackLayout>
+</ContentPage>
