@@ -13,24 +13,37 @@ namespace TriviaMauiClient.ViewModels
 
     public class GamePageViewModel : ViewModel
     {
-       
 
-        readonly private TriviaService _gameService;
+        #region Fields
         private string message;
-        public string Message { get => message; set { message = value; OnPropertyChange(); } }
-
         private string foundEmail;
+        #endregion
 
+        #region Service
+        readonly private TriviaService _gameService;
+        #endregion
+
+        #region Properties
+        public string Message { get => message; set { message = value; OnPropertyChange(); } }
         public string FoundEmail { get => foundEmail; set { foundEmail = value; OnPropertyChange(); } }
+        #endregion
+
+        #region Commands
         public ICommand SearchCommand { get; protected set; }
+        #endregion
 
 
+        /// <summary>
+        /// c'tor
+        /// </summary>
+        /// <param name="gameService"></param>
         public GamePageViewModel(TriviaService gameService)
         {
             _gameService = gameService;
             var u=SecureStorage.Default.GetAsync("LoggedUser").Result;
             var user= JsonSerializer.Deserialize<User>(u);
             Message = $"Hello {user.NickName}";
+            //מוצאת אימייל של יוזר לפי השם שלו
             SearchCommand = new Command<string>( async(x) => FoundEmail = await _gameService.GetUserEmail(x));
           
         }
