@@ -12,8 +12,8 @@ namespace TriviaMauiClient.Services
 {
     public class TriviaService
     {
-        HttpClient _httpClient;
-        JsonSerializerOptions _serializerOptions;
+        readonly HttpClient _httpClient;
+        readonly JsonSerializerOptions _serializerOptions;
         const string URL = @"https://zr8z94hw-44376.euw.devtunnels.ms/AmericanQuestions/";
 
         public TriviaService()
@@ -21,7 +21,8 @@ namespace TriviaMauiClient.Services
             _httpClient = new HttpClient();
           
                 
-            _serializerOptions = new JsonSerializerOptions() { WriteIndented=true, PropertyNameCaseInsensitive = true };
+            _serializerOptions = new JsonSerializerOptions() 
+            { WriteIndented=true, PropertyNameCaseInsensitive = true };
 
         }
 
@@ -69,6 +70,11 @@ namespace TriviaMauiClient.Services
 
         }
 
+        /// <summary>
+        /// פעולה המחזירה אימייל של יוזר על פי הכינוי שלו
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public async Task<string> GetUserEmail(string x)
         {
             try
@@ -84,7 +90,7 @@ namespace TriviaMauiClient.Services
 
                 return "תקלה";
             }
-            catch(Exception ex) { };
+            catch(Exception ex) { Console.WriteLine(ex.Message) ; };
             return "תקלה";
         }
     }

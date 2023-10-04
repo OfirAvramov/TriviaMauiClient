@@ -15,7 +15,7 @@ namespace TriviaMauiClient.ViewModels
     {
        
 
-        private TriviaService _gameService;
+        readonly private TriviaService _gameService;
         private string message;
         public string Message { get => message; set { message = value; OnPropertyChange(); } }
 
