@@ -31,7 +31,7 @@ namespace TriviaMauiClient.ViewModels
             var u=SecureStorage.Default.GetAsync("LoggedUser").Result;
             var user= JsonSerializer.Deserialize<User>(u);
             Message = $"Hello {user.NickName}";
-            SearchCommand = new Command(async (x) => FoundEmail = await _gameService.GetUserEmail((string)x));
+            SearchCommand = new Command<string>( async(x) => FoundEmail = await _gameService.GetUserEmail(x));
           
         }
     }
