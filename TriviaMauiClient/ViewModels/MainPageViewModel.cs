@@ -112,7 +112,7 @@ namespace TriviaMauiClient.ViewModels
                     var user = await _service.LogInAsync(UserName, Password);
 
                     lvm.IsBusy = false;
-                    await AppShell.Current.Navigation.PopModalAsync();
+                    await Shell.Current.Navigation.PopModalAsync();
                     if (!user.Success)
                     {
                         ShowLoginError = true;

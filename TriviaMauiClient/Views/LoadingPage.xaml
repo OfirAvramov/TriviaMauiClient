@@ -7,10 +7,11 @@
     Title="LoadingPage"
     x:DataType="viewmodel:LoadingPageViewModel"
     Opacity="25">
-    <VerticalStackLayout>
+    <VerticalStackLayout Margin="250">
         <ActivityIndicator
             HeightRequest="100"
             IsRunning="{Binding IsBusy}"
+            VerticalOptions="CenterAndExpand"
             WidthRequest="100"
             ZIndex="-1" />
         <Label

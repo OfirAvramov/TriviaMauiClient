@@ -14,7 +14,7 @@ namespace TriviaMauiClient.Services
     {
         readonly HttpClient _httpClient;
         readonly JsonSerializerOptions _serializerOptions;
-        const string URL = @"https://zr8z94hw-44376.euw.devtunnels.ms/AmericanQuestions/";
+        const string URL = @"https://694vb5z6-44376.euw.devtunnels.ms/AmericanQuestions/";
 
         public TriviaService()
         {
@@ -32,7 +32,8 @@ namespace TriviaMauiClient.Services
             };
 
         }
-
+        //"Get"
+        #region GetHello
         /// <summary>
         /// פעולה קטנה לבדיקת תקשורת מול השרת.
         /// השרת מחזיר מחרוזת של שלום עולם
@@ -53,7 +54,10 @@ namespace TriviaMauiClient.Services
             catch (Exception ex) { Console.WriteLine(ex.Message); }
             return "ooops";
         }
+        #endregion
 
+        //"Post"
+        #region LogInAsync
         /// <summary>
         /// פעולה המבצעת התחברות
         /// הפעולה מקבלת שם משתמש וסיסמה
@@ -78,6 +82,7 @@ namespace TriviaMauiClient.Services
                         {
                             jsonContent = await response.Content.ReadAsStringAsync();
                             User u = JsonSerializer.Deserialize<User>(jsonContent, _serializerOptions);
+                            await Task.Delay(2000);
                             return new UserDto() { Success = true, Message = string.Empty, User = u };
 
                         }
@@ -94,7 +99,10 @@ namespace TriviaMauiClient.Services
             return new UserDto() { Success = false, User = null, Message = ErrorMessages.INVALID_LOGIN };
 
         }
+        #endregion
 
+        //"Get with Parameters"
+        #region GetUserEmail
         /// <summary>
         /// פעולה המחזירה אימייל של יוזר על פי הכינוי שלו
         /// </summary>
@@ -120,6 +128,7 @@ namespace TriviaMauiClient.Services
             catch (Exception ex) { Console.WriteLine(ex.Message); };
             return "תקלה";
         }
+        #endregion
     }
 
 }
