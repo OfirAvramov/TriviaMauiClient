@@ -58,6 +58,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\RegisterPage.xaml.cs">
+	    <DependentUpon>RegisterPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\RegisterPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\GamePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
