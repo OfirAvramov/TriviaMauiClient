@@ -14,7 +14,7 @@ namespace TriviaMauiClient.Services
     {
         readonly HttpClient _httpClient;
         readonly JsonSerializerOptions _serializerOptions;
-        const string URL = @"https://694vb5z6-44376.euw.devtunnels.ms/AmericanQuestions/";
+        const string URL = @"";
 
         public TriviaService()
         {
@@ -72,7 +72,10 @@ namespace TriviaMauiClient.Services
         {
             try
             {
-                var jsonContent = JsonSerializer.Serialize(new User() { Email = userName, Password = password }, _serializerOptions);
+                //האובייקט לשליחה
+                User user = new User() { Email = userName, Password = password };
+                //מבצעת סיריליזציה
+                var jsonContent = JsonSerializer.Serialize(user , _serializerOptions);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var response = await _httpClient.PostAsync($"{URL}Login", content);
               
