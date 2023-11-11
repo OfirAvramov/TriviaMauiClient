@@ -15,10 +15,25 @@
             HorizontalOptions="Center"
             Text="{Binding Message}"
             VerticalOptions="Center" />
-        <Label Text="מצא Email"/>
-        <Entry x:Name="nickName" Placeholder="הכנס כינוי משתמש"/>
-        <Button Text="חפש" Command="{Binding SearchCommand}" CommandParameter="{Binding Source={x:Reference nickName},Path=Text}"/>
-        <Label Text="{Binding FoundEmail}"/>
+        <Label Text="מצא Email" />
+        <Entry x:Name="nickName" Placeholder="הכנס כינוי משתמש" />
+        <Button
+            Command="{Binding SearchCommand}"
+            CommandParameter="{Binding Source={x:Reference nickName}, Path=Text}"
+            Text="חפש" />
+        <Label Text="{Binding FoundEmail}" />
+        <Image
+            Aspect="AspectFit"
+            HeightRequest="80"
+            Source="{Binding PhotoImageSource}"
+            WidthRequest="80">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Buttons="Primary" Command="{Binding ChangePhoto}" />
+            </Image.GestureRecognizers>
+        </Image>
+
+        <Button Command="{Binding TakePictureCommand}" Text="צלם תמונה" />
+
 
 
     </VerticalStackLayout>

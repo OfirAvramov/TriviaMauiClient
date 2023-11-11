@@ -50,7 +50,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\robot.svg" />
+	  <MauiImage Remove="Resources\Images\yali.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Images\logo.svg" />
+	  <None Remove="Resources\Images\robot.svg" />
+	  <None Remove="Resources\Images\yali.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Images\robot.svg">
+	    <BaseSize>168,208</BaseSize>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Resources\Images\yali.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>

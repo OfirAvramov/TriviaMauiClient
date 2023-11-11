@@ -35,7 +35,7 @@ namespace TriviaMauiClient.ViewModels
         public string UserName
         { 
             get => _userName;
-            set { if (_userName != value) { _userName = value; if (!ValidateUser()) { ShowUserNameError = true; UserErrorMessage = ErrorMessages.INVALID_USERNAME; } else { ShowUserNameError = true; UserErrorMessage = string.Empty; } OnPropertyChange(); OnPropertyChange(nameof(IsButtonEnabled)); } } }
+            set { if (_userName != value) { _userName = value; if (!ValidateUser()) { ShowUserNameError = true; UserErrorMessage = ErrorMessages.INVALID_USERNAME; } else { ShowUserNameError = false; UserErrorMessage = string.Empty; } OnPropertyChange(); OnPropertyChange(nameof(IsButtonEnabled)); } } }
 
         public bool ShowUserNameError
         {
@@ -106,11 +106,12 @@ namespace TriviaMauiClient.ViewModels
                 try
                 {
                     #region טעינת מסך ביניים
+                    await Task.Delay(1000);
                     var lvm =new LoadingPageViewModel() { IsBusy = true };
                     await AppShell.Current.Navigation.PushModalAsync(new LoadingPage(lvm));
                     #endregion
                     var user = await _service.LogInAsync(UserName, Password);
-
+                    await Task.Delay(1000);
                     lvm.IsBusy = false;
                     await Shell.Current.Navigation.PopModalAsync();
                     if (!user.Success)
@@ -122,7 +123,7 @@ namespace TriviaMauiClient.ViewModels
                     {
                         await AppShell.Current.DisplayAlert("התחברת", "אישור להתחלת משחק", "אישור");
                         await SecureStorage.Default.SetAsync("LoggedUser", JsonSerializer.Serialize(user.User));
-                        await AppShell.Current.GoToAsync("Game");
+                        await Shell.Current.GoToAsync("Game");
                     }
 
 
